@@ -13,6 +13,20 @@ namespace Vidly
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //it need to be before Default route placed at down. Because one Default route is called then others ignored.
+            //Most specific to more generic order.
+
+            routes.MapMvcAttributeRoutes();
+
+            //routes.MapRoute(
+            //    "MoviesByreleaseDate",
+            //    "movies/released/{year}/{month}",
+            //    new { controller= "Movies", action = "ByReleaseDate"},
+            //    //new { year = "\\d{4}", month = "\\d{2}" }
+            //    //new { year = @"\d{4}", month = @"\d{2}"}
+            //    new { year = @"2015|2016|2017", month = @"\d{2}" }
+            //    );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
